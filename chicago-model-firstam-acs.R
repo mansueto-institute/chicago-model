@@ -104,6 +104,22 @@ query_fa <- scan_fa %>%
   ungroup() %>%
   collect()
 
+unique(query_fa$property_class)
+
+query_fa <- query_fa %>% 
+  mutate(county_fips = str_sub(tract_fips, 1, 5), 
+         assessment_factor = case_when(county_fips == '17031' & property_class == "Residential" ~ 10, # 10%
+                                  county_fips == '17031' & property_class == "Commercial" ~ 4, # 20%
+                                  county_fips != '17031' ~ 3)) %>% # 33.3333%
+  mutate(market_totalvalue = assdtotalvalue*assessment_factor,
+         market_landvalue = assdlandvalue*assessment_factor,
+         market_improvementvalue = assdimprovementvalue*assessment_factor)
+
+# query_fa <- query_fa %>% 
+#   filter(property_class %in% c('Residential','Commercial'))
+
+# https://tax.illinois.gov/questionsandanswers/answer.318.html
+
 write_csv(query_fa, 'tract_firstam.csv')
 
 # property_class: A First American general code used to easily recognize specific property types (e.g., Residential, Commercial, Office).
