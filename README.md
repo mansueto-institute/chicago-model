@@ -6,6 +6,6 @@
 
 #### Next steps:
 * Use [lehdr](https://github.com/jamgreen/lehdr) to process LODES data.
-* Use [r5r](https://ipeagit.github.io/r5r/_ to process travel time matrices.
+* Use [r5r](https://ipeagit.github.io/r5r/) to process travel time matrices.
 
 
