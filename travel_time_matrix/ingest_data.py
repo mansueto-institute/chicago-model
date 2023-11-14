@@ -54,7 +54,7 @@ def get_origin_points(tracts, directory):
 
     origins = origins[['GEOID', 'ORIGIN']].rename(columns={'GEOID':'id', 'ORIGIN':'geometry'})
 
-    fp = f"{directory}/origins.csv"
+    fp = f"origins.csv"
     origins.to_csv(fp)
     print("Data was downloaded to:", fp)
 
