@@ -1,11 +1,19 @@
-# package dependencies
+
 import r5py
 import datetime
 import geopandas
 
-# to run package on CLI
+import argparse
 import sys
 import os
+
+def mem_profile() -> str: 
+    """
+    Return memory usage, str
+    """
+    mem_use = str(round(100 - psutil.virtual_memory().percent,4))+'% of '+str(round(psutil.virtual_memory().total/1e+9,3))+' GB RAM'
+    return mem_use
+
 
 def create_travel_time_matrix(directory_fp, origins_fp, destinations_fp,
                               TransportMode):
@@ -36,7 +44,7 @@ def create_travel_time_matrix(directory_fp, origins_fp, destinations_fp,
         origins=origins,
         destinations=destinations,
         transport_modes=[getattr(r5py.TransportMode, TransportMode)],
-        departure=datetime.datetime(2019, 5, 13, 14, 0, 0),
+        departure=datetime.datetime(2019, 5, 13, 14, 0, 0), # morning commute 
     ).compute_travel_times()
     print("Done.")
 
@@ -44,11 +52,33 @@ def create_travel_time_matrix(directory_fp, origins_fp, destinations_fp,
     travel_time_matrix.to_csv(f"{directory_fp}/ttm.csv")
     print("Done.")
 
-# run package on CLI: python -m compute_ttm "tracts_17_031" "origins.csv" "origins.csv" "CAR"
-# assuming that the files cta_chicago.zip and illinois-latest.osm.pbf are in "tracts_17_031" 
-#       and origins in the main directory that the call is bring run from.
+
+def main(log_file: Path, directory_fp: Path, origins_fp: Path, destinations_fp: Path, TransportMode: str):
+
+    logging.basicConfig(filename=Path(log_file), format='%(asctime)s:%(message)s: ', level=logging.INFO, datefmt='%Y-%m-%d %H:%M:%S')
+
+    logging.info(f"Process started: {mem_profile()}")
+    t0 = time.time()
+
+    create_travel_time_matrix(
+        directory_fp, 
+        origins_fp, 
+        destinations_fp, 
+        TransportMode)
+
+    t1 = time.time()
+    logging.info(f"Process succeeded: {mem_profile()}, {round((t1-t0)/60,2)} minutes")
+
+    
+def setup(args=None):    
+    parser = argparse.ArgumentParser(description='Build blocks geometries.')
+    parser.add_argument('--directory_fp', required=True, type=Path, dest="directory_fp", help="Path to input directory.")
+    parser.add_argument('--origins_fp', required=True, type=Path, dest="origins_fp", help="Path to origin CSV.")
+    parser.add_argument('--destinations_fp', required=True, type=Path, dest="destinations_fp", help="Path to destination CSV.")
+    parser.add_argument('--TransportMode', required=True, type=str, dest="TransportMode", help="Any TransportMode method listed here: https://r5py.readthedocs.io/en/stable/reference/reference.html#r5py.TransportMode.")
+    return parser.parse_args(args)
 
 if __name__ == "__main__":
-    directory_fp, origins_fp, destinations_fp, TransportMode = sys.argv[1:]
+    main(**vars(setup()))
 
-    create_travel_time_matrix(directory_fp, origins_fp, destinations_fp, TransportMode)
+
