@@ -3,6 +3,7 @@ import r5py
 import datetime
 import geopandas
 
+import psutil
 import argparse
 import sys
 import os
@@ -44,7 +45,7 @@ def create_travel_time_matrix(directory_fp, origins_fp, destinations_fp,
         origins=origins,
         destinations=destinations,
         transport_modes=[getattr(r5py.TransportMode, TransportMode)],
-        departure=datetime.datetime(2019, 5, 13, 14, 0, 0), # morning commute 
+        departure=datetime.datetime(2023, 10, 13, 8, 0, 0), # morning commute 
     ).compute_travel_times()
     print("Done.")
 
