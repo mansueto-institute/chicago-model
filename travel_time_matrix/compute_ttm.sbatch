@@ -5,8 +5,8 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=32
 #SBATCH --mem=180000
-#SBATCH --output=/project/crberry/chicago-model//deployments/compute_ttm.out
-#SBATCH --error=/project/crberry/chicago-model//deployments/compute_ttm.err
+#SBATCH --output=/project/crberry/chicago-model/travel_time_matrix/data/deployments/compute_ttm.out
+#SBATCH --error=/project/crberry/chicago-model/travel_time_matrix/data/deployments/compute_ttm.err
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=ckboyd@uchicago.edu
 #SBATCH --time=36:00:00
