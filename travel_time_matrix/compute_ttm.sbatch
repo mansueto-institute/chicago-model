@@ -15,7 +15,7 @@
 module load python/anaconda-2022.05
 source activate compute_ttm
 
-working_directory=/project/crberry/chicago-model-project
+working_directory=/project/crberry/chicago-model-project/chicago-model
 
 log_file_arg=$working_directory/data/deployments/compute_ttm.log
 directory_fp_arg=$working_directory/data/tracts_17_031/travel_network
