@@ -55,7 +55,8 @@ def get_origin_points(tracts, directory):
     origins = origins[['GEOID', 'ORIGIN']].rename(columns={'GEOID':'id', 'ORIGIN':'geometry'})
 
     fp = f"origins.csv"
-    origins.to_csv(fp)
+    geopandas.to_csv(fp, index=False)  
+
     print("Data was downloaded to:", fp)
 
 # GET PBF FILE ---------------------------------------------------------------
