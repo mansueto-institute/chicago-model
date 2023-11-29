@@ -1,12 +1,14 @@
-
+import sys
+sys.argv.append(["--r5-classpath", "/home/ckboyd/.cache/r5py/"])
 import r5py
+
 import datetime
 import geopandas as gpd
 import pandas as pd
 
 import psutil
 import argparse
-import sys
+
 import os
 import logging
 import time
