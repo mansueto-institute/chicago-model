@@ -1,5 +1,6 @@
-import sys
-sys.argv.append(["--r5-classpath", "/project/crberry/chicago-model-project/chicago-model/travel-time-matrix/data/r5-v6.6-all.jar"])
+# import sys
+# sys.argv.append(["--r5-classpath", "/home/ckboyd/mansueto/chicago-model/travel_time_matrix/data/r5-v6.6-all.jar"])
+# sys.argv.append(["--r5-classpath", "/project/crberry/chicago-model-project/chicago-model/travel-time-matrix/data/r5-v6.6-all.jar"])
 import r5py
 
 import datetime
@@ -9,6 +10,7 @@ import pandas as pd
 import psutil
 import argparse
 
+import sys
 import os
 import logging
 import time
