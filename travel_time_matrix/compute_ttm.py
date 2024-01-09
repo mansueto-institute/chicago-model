@@ -1,5 +1,5 @@
 import sys
-sys.argv.append(["--r5-classpath", "/home/ckboyd/.cache/r5py/"])
+sys.argv.append(["--r5-classpath", "/project/crberry/chicago-model-project/chicago-model/travel-time-matrix/data/r5-v6.6-all.jar"])
 import r5py
 
 import datetime
