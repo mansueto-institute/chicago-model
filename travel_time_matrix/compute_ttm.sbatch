@@ -8,7 +8,7 @@
 #SBATCH --output=/project/crberry/chicago-model-project/data/deployments/compute_ttm.out
 #SBATCH --error=/project/crberry/chicago-model-project/data/deployments/compute_ttm.err
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=ckboyd@uchicago.edu
+#SBATCH --mail-user=ckboyd@rcc.uchicago.edu
 #SBATCH --time=36:00:00
 #SBATCH --account=pi-crberry
 
