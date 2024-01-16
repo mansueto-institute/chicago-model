@@ -27,9 +27,9 @@
 options(java.parameters = '-Xmx9G') #not sure what we should change about this line to work on the cluster
 
 # build transport network, pointing to the path where OSM and GTFS data are stored
-library(r5r)
-library(argparse)
-library(logr)
+library(r-r5r)
+library(r-argparse)
+library(r-logr)
 
 # USE r5r TO GET TRAVEL TIME MATRIX --------------------------------------
 
