@@ -19,7 +19,7 @@ working_directory=/project/crberry/chicago-model-project
 
 log_file_arg=$working_directory/data/deployments/compute_ttm.log
 directory_fp_arg=$working_directory/data/tracts_17_031/travel_network
-origins_fp_arg=$working_directory/data/tracts_17_031/origins_R.csv
+origins_fp_arg=$working_directory/data/tracts_17_031/origins.csv
 TransportMode_arg=$CAR
 # Assumes that illinois-latest.osm.pbf are in "tracts_17_031/travel_network" 
 
