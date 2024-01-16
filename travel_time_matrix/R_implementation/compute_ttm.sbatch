@@ -23,4 +23,4 @@ origins_fp_arg=$working_directory/data/tracts_17_031/origins.csv
 TransportMode_arg=$CAR
 # Assumes that illinois-latest.osm.pbf are in "tracts_17_031/travel_network" 
 
-python /project/crberry/chicago-model-project/chicago-model/travel_time_matrix/compute_ttm.py --log_file $log_file_arg --directory_fp $directory_fp_arg --origins_fp $origins_fp_arg --TransportMode $TransportMode_arg
+Rscript /project/crberry/chicago-model-project/chicago-model/travel_time_matrix/compute_ttm.R --log_file $log_file_arg --directory_fp $directory_fp_arg --origins_fp $origins_fp_arg --TransportMode $TransportMode_arg

@@ -1,6 +1,3 @@
-# import sys
-# sys.argv.append(["--r5-classpath", "/home/ckboyd/mansueto/chicago-model/travel_time_matrix/data/r5-v6.6-all.jar"])
-# sys.argv.append(["--r5-classpath", "/project/crberry/chicago-model-project/chicago-model/travel-time-matrix/data/r5-v6.6-all.jar"])
 import r5py
 
 import datetime
@@ -32,8 +29,7 @@ def create_travel_time_matrix(directory_fp, origins_fp, TransportMode):
 
     Inputs:
     - directory_fp (str): directory name where all inputs exist
-    - origins (str): csv file
-    - destinations (str): csv file
+    - origins_fp (str): csv file
     - TransportMode (str): any TransportMode method listed here: https://r5py.readthedocs.io/en/stable/reference/reference.html#r5py.TransportMode
 
     Returns: ttm as pandas DataFrame (where num rows = origins * destinations)

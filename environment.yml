@@ -1,4 +1,4 @@
-name: r5py
+name: compute_ttm
 channels:
   - conda-forge
   - defaults
@@ -290,4 +290,3 @@ dependencies:
       - appdirs==1.4.4
       - gtfs-lite==0.2.1
       - pygris==0.1.6
-prefix: /home/ckboyd/.conda/envs/r5py
