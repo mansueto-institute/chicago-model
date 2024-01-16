@@ -21,7 +21,7 @@
 # r5r versioning --------------------------------------
 
 # utils::remove.packages('r5r')
-devtools::install_github("ipeaGIT/r5r", subdir = "r-package")
+# devtools::install_github("ipeaGIT/r5r", subdir = "r-package")
 
 # allocate RAM memory to Java
 options(java.parameters = '-Xmx9G') #not sure what we should change about this line to work on the cluster
