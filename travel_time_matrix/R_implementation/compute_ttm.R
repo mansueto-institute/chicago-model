@@ -97,11 +97,11 @@ main <- function(log_file, directory_fp, origins_fp, TransportMode) {
   tools::R_user_dir("r5r", which = "cache")
   # r5r::download_r5(force_update = TRUE) #comment out for offline execute, assuming jar is already in local project cache folder listed above
   
-  # create_travel_time_matrix(
-  #   directory_fp,
-  #   origins_fp,
-  #   TransportMode
-  # )
+  create_travel_time_matrix(
+    directory_fp,
+    origins_fp,
+    TransportMode
+  )
   
   log_print("Process succeeded")
 }
