@@ -12,7 +12,7 @@
 #SBATCH --time=36:00:00
 #SBATCH --account=pi-crberry
 
-module load R
+module load R/4.3.1
 source activate compute_ttm
 
 working_directory=/project/crberry/chicago-model-project

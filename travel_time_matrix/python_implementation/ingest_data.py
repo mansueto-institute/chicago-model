@@ -54,30 +54,22 @@ def get_origin_points(tracts, directory):
 
     origins = origins[['GEOID', 'ORIGIN']].rename(columns={'GEOID':'id', 'ORIGIN':'geometry'})
 
-    fp = f"origins.csv"
+    fp = f"{directory}/origins.csv"
     geopandas.to_csv(fp, index=False)  
 
     print("Data was downloaded to:", fp)
 
 # GET PBF FILE ---------------------------------------------------------------
 
-def get_pbf(pyrosm_source, directory):
+def get_pbf(osm_source, directory):
     # Download the data into specified directory
-    fp = pyrosm.get_data(pyrosm_source, directory=directory)
+    fp = pyrosm.get_data(osm_source, directory=directory)
     print("Data was downloaded to:", fp)
-
-# GET GTSM FILE --------------------------------------------------------------
-
-def get_pbf(pyrosm_source, directory):
-    # Download the data into specified directory
-    fp = pyrosm.get_data(pyrosm_source, directory=directory)
-    print("Data was downloaded to:", fp)
-
 
 # run package on CLI: python -m ingest_data "17" "031" "Illinois"
 
 if __name__ == "__main__":
-    geography, state_id, county_id, pyrosm_source = sys.argv[1:]
+    geography, state_id, county_id, osm_source = sys.argv[1:]
 
     directory = f"{geography}_{state_id}{county_id}"
 
@@ -87,4 +79,4 @@ if __name__ == "__main__":
 
     tracts = get_geometries(geography, state_id, county_id)
     get_origin_points(tracts, directory)
-    get_pbf(pyrosm_source, directory)
+    get_pbf(osm_source, directory)

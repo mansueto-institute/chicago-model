@@ -2,7 +2,7 @@
 
 # JAVA SET-UP  -----------------------------------------------------------
 
-#need to have Java SE Development Kit 21 to run
+# need to have Java SE Development Kit 21 to run
 
 # check your Java version here
 # rJava::.jinit()
@@ -20,16 +20,18 @@
 
 # r5r versioning --------------------------------------
 
+# need to have the development version of r5r in order to run, install by using the below
 # utils::remove.packages('r5r')
-# devtools::install_github("ipeaGIT/r5r", subdir = "r-package")
+devtools::install_github("ipeaGIT/r5r", subdir = "r-package")
 
 # allocate RAM memory to Java
-options(java.parameters = '-Xmx9G') #not sure what we should change about this line to work on the cluster
+options(java.parameters = '-Xmx9G')
 
 # build transport network, pointing to the path where OSM and GTFS data are stored
 library(r5r)
 library(argparse)
 library(logr)
+
 
 # USE r5r TO GET TRAVEL TIME MATRIX --------------------------------------
 
@@ -118,7 +120,6 @@ setup <- function() {
   return(args)
 }
 
-#exploring ways this could work in R
 if (sys.nframe() == 0) {
   args <- setup()
   main(args$log_file, args$directory_fp, args$origins_fp, args$TransportMode)
