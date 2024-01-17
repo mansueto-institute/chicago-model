@@ -56,7 +56,7 @@ create_travel_time_matrix <- function(directory_fp, origins_fp, TransportMode) {
 
   log_print("Starting to read in origins and set parameters...")
   origins <- read.csv(origins_fp)
-  origins_small <- origins[1:10,]
+  # origins_small <- origins[1:100,]
   mode <- c(TransportMode)
   departure_datetime <- as.POSIXct("13-10-2023 08:00:00",
                                   format = "%d-%m-%Y %H:%M:%S")
@@ -65,8 +65,8 @@ create_travel_time_matrix <- function(directory_fp, origins_fp, TransportMode) {
   # 3.1) calculate a travel time matrix
   log_print("Starting to create the travel time matrix...")
   ttm <- travel_time_matrix(r5r_core = r5r_core,
-                            origins = origins_small,
-                            destinations = origins_small,
+                            origins = origins,
+                            destinations = origins,
                             mode = mode,
                             departure_datetime = departure_datetime
                             )
