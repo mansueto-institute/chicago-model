@@ -5,8 +5,7 @@ library(tigris)
 library(RColorBrewer)
 library(sf)
 
-# import ttm
-
+# import ttm and census track geographies
 ttm <- read_csv("~/internships/mansueto/chicago-model/travel_time_matrix/data/tracts17031/travel_network/ttm.csv") %>% 
   #isolate to only the census tracts leaving 17031839100
   filter(from_id == "17031839100") %>% 
@@ -14,23 +13,19 @@ ttm <- read_csv("~/internships/mansueto/chicago-model/travel_time_matrix/data/tr
   mutate(GEOID = as.character(GEOID))
 
 cook_county_tracts <- tigris::tracts(state = "17", county = "031") %>% 
-  #select(GEOID, geometry) %>% 
   mutate(GEOID = as.character(GEOID))
 
+# merge into a joined table
 merged_table = left_join(cook_county_tracts, ttm, by=c('GEOID')) %>% 
   filter(!is.na(travel_time_p50))
 
+# plot 
 ggplot() + 
-  geom_sf(data = merged_table %>% filter(!is.na(travel_time_p50)), aes(fill = travel_time_p50), color = 'white', linewidth = .3) +
+  geom_sf(data = merged_table, aes(fill = travel_time_p50), color = 'white', linewidth = .3) +
   viridis::scale_fill_viridis() +
-  labs(subtitle = "Median Commute Time from Tract 17031839100") + 
+  labs(subtitle = "Median commute time to a tract in downtown Chicago") + 
   theme(plot.subtitle = element_text(hjust = .5)) + 
   theme_void()
 
+# save
 ggsave("tracts_ttm.jpg", device = "jpg")
-
-# jpeg("tracts_ttm.jpg", width = 700, height = "500")
-# plot(merged_table["travel_time_p50"],
-#      main="Median Commute Time from Tract '17031839100'",
-#      breaks = "jenks")
-# dev.off()
